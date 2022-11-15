@@ -8,3 +8,8 @@ body{
     background-color: #3B0032 !important;
     padding: 10px;
 }
+
+.navbar-brand{
+    padding: 5px;
+
+}
