@@ -71,3 +71,10 @@ def empresa_unica(request, id):
                                                  'tecnologias': tecnologias,
                                                  'empresas': empresas,
                                                  'vagas': vagas})
+
+def deletar_vaga(request, id_vaga):
+    vaga = Vagas.objects.get(id=id_vaga)
+    id_empresa = vaga.empresa.id
+    vaga.delete()
+    messages.add_message(request, constants.SUCCESS, 'Vaga excluída com sucesso')
+    return redirect(f'/home/empresa_unica/{id_empresa}')

@@ -7,5 +7,5 @@ urlpatterns = [
     path('nova_tarefa/<int:id_vaga>', views.nova_tarefa, name='nova_tarefa'),
     path('realizar_tarefa/<int:id>', views.realizar_tarefa, name='realizar_tarefa'),
     path('envia_email/<int:id_vaga>', views.envia_email, name="envia_email"),
-    path('atualizar_status/<int:id_vaga>', views.atualizar_status, name='atualizar_status')
+    path('atualizar_status/<int:id_vaga>', views.atualizar_status, name='atualizar_status'),
 ]

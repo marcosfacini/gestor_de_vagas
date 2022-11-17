@@ -73,9 +73,10 @@
                 <div class="box-vagas">
                     <div class="header-vagas">
                         <a href="{% url 'vaga' vaga.id %}">{{vaga.titulo}}</a>
+                        <a class="btn btn-danger" href="{% url 'deletar_vaga' vaga.id %}" role="button">Excluir</a>
                     </div>
 
-                    <div class="body-vagas">
+                    <div class="body-vagas"> 
                         <div class="row">
                             <div class="col-md">
                                 <label class="paragrafo">Nível:</label>

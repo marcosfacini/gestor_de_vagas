@@ -124,3 +124,4 @@ def atualizar_status(request, id_vaga):
     else:
         messages.add_message(request, constants.ERROR, 'Escolha uma opção de status')
         return redirect(f'/vagas/vaga/{id_vaga}')
+

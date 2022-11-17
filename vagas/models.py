@@ -32,7 +32,7 @@ class Tarefa(models.Model):
         return mark_safe(icon)
 
 class Emails(models.Model):
-    vaga = models.ForeignKey(Vagas, on_delete=models.DO_NOTHING)
+    vaga = models.ForeignKey(Vagas, on_delete=models.SET_NULL, null=True)
     assunto = models.CharField(max_length=100)
     corpo = models.TextField()
     enviado = models.BooleanField()
