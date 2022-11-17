@@ -104,3 +104,11 @@
 .paragrafo-orange{
     color: #ED8554;
 }
+
+.status{
+    width: 200px;
+}
+
+.botao_atualizar{
+    display: flex;
+}

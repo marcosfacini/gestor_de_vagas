@@ -18,12 +18,27 @@
         <br>
         <h3 class="titulo">{{vaga.titulo}}</h3>
         <p class="titulo2">{{vaga.empresa}}</p>
-        <p>Progresso atual</p>
-        
+        <p>Progresso atual: {{vaga.get_status_display}}</p>
         <div style="width: 40%" class="progress">
             <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: {{vaga.progresso}}%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-    </div>
+        <br>
+
+        <form action="{% url 'atualizar_status' vaga.id %}" method="POST">  {% csrf_token %}
+            <div class="botao_atualizar">
+                <select name="atualizacao" class="form-select status">  
+                    <option value="" disabled selected hidden>Atualizar status</option>   
+                    <option value="I">Interesse</option>
+                    <option value="C">Currículo enviado</option>    
+                    <option value="E">Entrevista</option>    
+                    <option value="D">Desafio técnico</option>    
+                    <option value="F">Finalizado</option>          
+                </select>&nbsp;
+            <input type="submit" value="Atualizar" class="btn btn-orange">
+             </div>
+        </form>
+    </div>  
+    
 
     <div class="bg2">
         <div class="container">

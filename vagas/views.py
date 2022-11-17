@@ -112,3 +112,15 @@ def envia_email(request, id_vaga):
         mail.save()
         messages.add_message(request, constants.ERROR, 'Erro interno do sistema!')
         return redirect(f'/vagas/vaga/{id_vaga}')
+
+def atualizar_status(request, id_vaga):
+    if request.POST.get('atualizacao'):
+        atualizacao = request.POST.get('atualizacao')
+        vaga = Vagas.objects.get(id=id_vaga)
+        vaga.status = atualizacao
+        vaga.save()
+        messages.add_message(request, constants.SUCCESS, 'Status atualizado')
+        return redirect(f'/vagas/vaga/{id_vaga}')
+    else:
+        messages.add_message(request, constants.ERROR, 'Escolha uma opção de status')
+        return redirect(f'/vagas/vaga/{id_vaga}')
