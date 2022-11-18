@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from .models import Tecnologias, Empresa, Vagas
 from django.contrib import messages
 from django.contrib.messages import constants
@@ -78,3 +78,10 @@ def deletar_vaga(request, id_vaga):
     vaga.delete()
     messages.add_message(request, constants.SUCCESS, 'Vaga excluída com sucesso')
     return redirect(f'/home/empresa_unica/{id_empresa}')
+
+def nova_tech(request):
+    tech = request.POST.get('tech')
+    tecnologia = Tecnologias(tecnologia=tech)
+    tecnologia.save()
+    messages.add_message(request, constants.SUCCESS, 'Tecnologia cadastrada com sucesso')
+    return redirect('/home/empresas')
