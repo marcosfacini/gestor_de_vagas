@@ -76,7 +76,10 @@ def deletar_vaga(request, id_vaga):
     return redirect(f'/home/empresa_unica/{id_empresa}')
 
 def tecnologias(request):
+    nome_filtrar = request.GET.get('nome')
     tecnologias = Tecnologias.objects.all()
+    if nome_filtrar:
+        tecnologias = tecnologias.filter(tecnologia__icontains = nome_filtrar)
     return render(request, 'tecnologias.html', {'tecnologias': tecnologias,})
 
 def nova_tech(request):
