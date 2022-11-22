@@ -64,12 +64,8 @@ def excluir_empresa(request, id):
 
 def empresa_unica(request, id):
     empresa_unica = get_object_or_404(Empresa, id=id)
-    empresas = Empresa.objects.all()
-    tecnologias = Tecnologias.objects.all()
     vagas = Vagas.objects.filter(empresa_id=id)
     return render(request, 'empresa_unica.html', {'empresa': empresa_unica,
-                                                 'tecnologias': tecnologias,
-                                                 'empresas': empresas,
                                                  'vagas': vagas})
 
 def deletar_vaga(request, id_vaga):
@@ -88,4 +84,10 @@ def nova_tech(request):
     tecnologia = Tecnologias(tecnologia=tech)
     tecnologia.save()
     messages.add_message(request, constants.SUCCESS, 'Tecnologia cadastrada com sucesso')
+    return redirect('/home/tecnologias')
+
+def excluir_tech(request, id_tech):
+    tecnologia = Tecnologias.objects.get(id=id_tech)
+    tecnologia.delete()
+    messages.add_message(request, constants.SUCCESS, 'Tecnologia excluída com sucesso')
     return redirect('/home/tecnologias')

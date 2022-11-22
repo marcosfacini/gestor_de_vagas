@@ -129,7 +129,7 @@
                         <div class="col-md">
                             <label>Tecnologias que já domino:</label>
                             <select name="tecnologias_domina" class="form-select" multiple>
-                                {% for tech in tecnologias %}
+                                {% for tech in empresa.tecnologias.all %}
                                     <option value="{{tech.id}}">{{tech}}</option>
                                 {% endfor %}
 
@@ -139,7 +139,7 @@
                         <div class="col-md">
                             <label>Tecnologias que não domino:</label>
                             <select name="tecnologias_nao_domina" class="form-select" multiple>
-                                {% for tech in tecnologias %}
+                                {% for tech in empresa.tecnologias.all %}
                                     <option value="{{tech.id}}">{{tech}}</option>
                                 {% endfor %}
 
@@ -166,17 +166,8 @@
                         
                     </div>
                     <br>
-                    <div class="row">
-                        <div class="col-md">
-                            <label>Empresa:</label>
-                            <select name="empresa" class="form-select">
-                                {% for empresa_iter in empresas %}
-                                    <option {% if empresa_iter.id == empresa.id %}selected{%endif%}  value="{{empresa_iter.id}}">{{empresa_iter}}</option>
-                                {% endfor %}
-                                                                                                                                 
-                            </select>
-                        </div>
-       
+                    <div>
+                        <input type="hidden" name="empresa" value="{{ empresa.id }}">
                     </div>
 
                     <br>
