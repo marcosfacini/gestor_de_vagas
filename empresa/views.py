@@ -79,9 +79,13 @@ def deletar_vaga(request, id_vaga):
     messages.add_message(request, constants.SUCCESS, 'Vaga excluída com sucesso')
     return redirect(f'/home/empresa_unica/{id_empresa}')
 
+def tecnologias(request):
+    tecnologias = Tecnologias.objects.all()
+    return render(request, 'tecnologias.html', {'tecnologias': tecnologias,})
+
 def nova_tech(request):
     tech = request.POST.get('tech')
     tecnologia = Tecnologias(tecnologia=tech)
     tecnologia.save()
     messages.add_message(request, constants.SUCCESS, 'Tecnologia cadastrada com sucesso')
-    return redirect('/home/empresas')
+    return redirect('/home/tecnologias')

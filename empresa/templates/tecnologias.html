@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load filtro %}
+
+
+{% block 'head' %} 
+    <link href="{% static 'empresa/css/tecnologias.css' %}" rel="stylesheet"> 
+{% endblock %}
+
+
+{% block 'body' %}
+    <div class="wrapper">
+        <div class="box"> 
+            <div class="header-box">
+                {% if messages %}
+                    {% for message in messages %}
+                        <section class="alert {{message.tags}}">
+                            {{message}}
+                        </section>
+                    {% endfor %}
+                {% endif %}
+                <h2 class="titulo">Gerenciar Tecnologias</h2>
+                <a href="#" class="btn-nova-empresa" data-bs-toggle="modal" data-bs-target="#myModal">Nova tecnologia</a>
+            </div>
+            <div class="borda-box"></div>
+            <div class="body-box">
+            
+                <form action="{% url 'tecnologias' %}" method="GET"> {% csrf_token %}
+                <div class="row">
+                    
+                        <div class="col-md-5">
+                            <input type="text" placeholder="Busque pelo nome" class="form-control" name="nome">
+                        </div>
+                    
+                    <div class="col-md-3">
+                        <input type="submit" value="FILTRAR" class="btn btn-lg btn-orange">
+                    </div>
+                </div>
+                </form>
+
+                <table class="tabela" cellpadding="20">
+                    <tr>
+                        <th>Nome</th>
+                        <th>Ação</th>
+                    </tr>
+
+                    
+                    {% for tech in tecnologias%}
+                    <tr {% if not forloop.counter|is_par %} class="tabela-linha" {% endif %}>
+                        <td> {{tech.tecnologia}} </td>
+                        
+                        
+                        <td>
+                            <a href="{% url 'excluir_empresa' tech.id %}" class="btn-excluir">Excluir</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                    
+                </table>
+            </div>
+
+
+            
+
+        </div>
+    </div>
+
+    <div class="modal fade" id="myModal"  role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <form action="{% url 'nova_tech' %}" method="POST">{% csrf_token %}
+            <div class="modal-header">
+              <h4 class="modal-title" id="myModalLabel">Cadastrar nova tecnologia</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="form-control" name="tech" placeholder="Digite a tecnologia">
+            </div>
+            <div class="modal-footer">
+                <input type="submit" class="btn-nova-empresa" value="Salvar">
+            </div>
+          </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock%}
+

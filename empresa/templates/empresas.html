@@ -21,7 +21,7 @@
                 {% endif %}
                 <h2 class="titulo">Gerenciar empresas</h2>
                 <a href="{% url 'nova_empresa' %}" class="btn-nova-empresa">Nova empresa</a>
-                <a href="#" class="btn-nova-empresa" data-bs-toggle="modal" data-bs-target="#myModal">Nova tecnologia</a>
+                <a href="{% url 'tecnologias'%}" class="btn-nova-empresa">Ver tecnologias</a>
             </div>
             <div class="borda-box"></div>
             <div class="body-box">
@@ -93,25 +93,6 @@
         </div>
     </div>
 
-
-    <div class="modal fade" id="myModal"  role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <form action="{% url 'nova_tech' %}" method="POST">{% csrf_token %}
-            <div class="modal-header">
-              <h4 class="modal-title" id="myModalLabel">Cadastrar nova tecnologia</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <input type="text" class="form-control" name="tech" placeholder="Digite a tecnologia">
-            </div>
-            <div class="modal-footer">
-                <input type="submit" class="btn-nova-empresa" value="Salvar">
-            </div>
-          </div>
-            </form>
-        </div>
-    </div>
 
 {% endblock%}
 
