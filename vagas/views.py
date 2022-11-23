@@ -47,11 +47,15 @@ def nova_vaga(request):
 
 def vaga(request, id):                                                                                                                                                                                                                              
     vaga = get_object_or_404(Vagas, id=id)
+    tecnologias_estudar = vaga.tecnologias_estudar
+    tecnologias_dominadas = vaga.tecnologias_dominadas
     tarefas = Tarefa.objects.filter(vaga=vaga).filter(realizada=False)
     emails = Emails.objects.filter(vaga=vaga)
     return render(request, 'vaga.html', {'vaga': vaga,
                                          'tarefas': tarefas,
-                                         'emails': emails})
+                                         'emails': emails,
+                                         'tecnologias_estudar': tecnologias_estudar,
+                                         'tecnologias_dominadas': tecnologias_dominadas})
 
 def nova_tarefa(request, id_vaga):
     titulo = request.POST.get('titulo')
