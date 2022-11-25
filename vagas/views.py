@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from empresa.models import Vagas
+from empresa.models import Vagas, Tecnologias
 from django.contrib import messages
 from django.contrib.messages import constants
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from .models import Tarefa, Emails
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
@@ -128,4 +128,25 @@ def atualizar_status(request, id_vaga):
     else:
         messages.add_message(request, constants.ERROR, 'Escolha uma opção de status')
         return redirect(f'/vagas/vaga/{id_vaga}')
+
+def tech_a_estudar(request):
+    id_tech = request.POST.get('id_tech')
+    id_vaga = request.POST.get('id_vaga')
+    vaga = Vagas.objects.get(id=id_vaga)
+    vaga.save()
+    vaga.tecnologias_dominadas.remove(id_tech)
+    vaga.tecnologias_estudar.add(id_tech)
+    vaga.save()
+    return redirect(f'/vagas/vaga/{id_vaga}')
+
+def tech_dominada(request):
+    id_tech = request.POST.get('id_tech')
+    id_vaga = request.POST.get('id_vaga')
+    vaga = Vagas.objects.get(id=id_vaga)
+    vaga.save()
+    vaga.tecnologias_estudar.remove(id_tech)
+    vaga.tecnologias_dominadas.add(id_tech)
+    vaga.save()
+    return redirect(f'/vagas/vaga/{id_vaga}')
+
 

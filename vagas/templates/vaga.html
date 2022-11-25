@@ -108,7 +108,7 @@
             </div>
 
             <div class="col-md">
-                <form action="{% url 'envia_email' vaga.id%}" method="POST"> {% csrf_token %}
+                <form action="{% url 'envia_email' vaga.id %}" method="POST"> {% csrf_token %}
                     <label>Assunto:</label>
                     <input name="assunto" type="text" class="form-control" placeholder="assunto">
                     <br>
@@ -158,24 +158,33 @@
             <div class="col-md">
                 <p class="titulo2">Tecnologias que domino</p>
                 {% for tech in tecnologias_dominadas.all %}
-                <a href="{% url 'nova_empresa' %}" type="button" class="li-tech">
-                    {{tech}}
-                    <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                    </svg>
-                </a>
+                    <form action="{% url 'tech_a_estudar' %}" method="POST"> {% csrf_token %}
+                        <input type="hidden" name="id_tech" value="{{tech.id}}"> 
+                        <input type="hidden" name="id_vaga" value="{{vaga.id}}"> 
+                        <button class="li-tech" type='submit'>
+                            {{tech}}
+                            <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                            </svg>
+                        </button>
+                    </form>
                 {% endfor %}
             </div>
 
             <div class="col-md">
                 <p class="titulo2">Preciso estudar</p>
                 {% for tech in tecnologias_estudar.all %}
-                <a href="{% url 'nova_empresa' %}" type="button" class="li-tech">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                    </svg>
-                    {{tech}}   
-                    </a>
+                    <form action="{% url 'tech_dominada' %}" method="POST"> {% csrf_token %}
+                        <input type="hidden" name="id_tech" value="{{tech.id}}"> 
+                        <input type="hidden" name="id_vaga" value="{{vaga.id}}"> 
+                        <button class="li-tech" type='submit'>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+                        </svg>
+                        {{tech}}   
+                        </button>
+                    </form>
+                    
                 {% endfor %}
             </div>
         </div>
