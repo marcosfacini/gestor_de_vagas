@@ -55,9 +55,9 @@
     padding: 30px;
 }
 
-.btn-orange{
+.btn-filtro{
 
-    background-color: #ED8554;
+    background-color: #7D2948; 
     color: white;
 }
 
@@ -79,3 +79,14 @@
     border-radius: 10px;
     font-weight: bold;
 }
+
+.links{
+    color: #631f38;
+    text-decoration: none;
+    font-weight: bold
+}
+
+.links:hover{
+    color: #000000;
+    text-decoration: none;
+   } 

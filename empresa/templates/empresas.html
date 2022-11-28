@@ -44,7 +44,7 @@
                         </div>
                     
                     <div class="col-md-3">
-                        <input type="submit" value="FILTRAR" class="btn btn-lg btn-orange">
+                        <input type="submit" value="FILTRAR" class="btn btn-lg btn-filtro">
                     </div>
                 </div>
                 </form>
@@ -61,7 +61,7 @@
                     
                     {% for empresa in empresas%}
                     <tr {% if not forloop.counter|is_par %} class="tabela-linha" {% endif %}>
-                        <td> <a href="{% url 'empresa_unica' empresa.id %}"> {{empresa.nome}} </a> </td>
+                        <td> <a href="{% url 'empresa_unica' empresa.id %}" class="links"> {{empresa.nome}} </a> </td>
                         <td>{{empresa.endereco}}</td>
                         <td>
                             <select class="form-select">                                    

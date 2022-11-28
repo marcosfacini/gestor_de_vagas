@@ -64,15 +64,15 @@
 
         <hr>
 
-        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-lg btn-orange">Nova vaga</a>
+        <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-lg btn-new">Nova vaga</a>
 
         <div class="row">
-            {% for vaga in vagas %}
+            {% for vaga in vagas %} 
                 <div class="col-md">
 
                 <div class="box-vagas">
                     <div class="header-vagas">
-                        <a href="{% url 'vaga' vaga.id %}">{{vaga.titulo}}</a>
+                        <a href="{% url 'vaga' vaga.id %}" class="links">{{vaga.titulo}}</a>
                         <a class="btn btn-danger" href="{% url 'deletar_vaga' vaga.id %}" role="button">Excluir</a>
                     </div>
 
@@ -81,13 +81,13 @@
                             <div class="col-md">
                                 <label class="paragrafo">Nível:</label>
                                 <br>        
-                                <label class="paragrafo paragrafo-orange">{{vaga.get_nivel_experiencia_display}}</label>                           
+                                <label class="paragrafo paragrafo-roxo">{{vaga.get_nivel_experiencia_display}}</label>                           
                             </div>
 
                             <div class="col-md">
                                 <label class="paragrafo">Status <img src="{% static 'empresa/img/flag_green.png' %}"></label>
                                 <br>        
-                                <label class="paragrafo paragrafo-orange">{{vaga.get_status_display}}</label>                           
+                                <label class="paragrafo paragrafo-roxo">{{vaga.get_status_display}}</label>                           
                             </div>
 
                         </div>
@@ -185,7 +185,7 @@
        
                     </div>
                     <br>
-                    <input type="submit" value="Cadastrar Vaga" class="btn btn-lg btn-orange">
+                    <input type="submit" value="Cadastrar Vaga" class="btn btn-lg btn-new">
 
                 </form>
             </div>

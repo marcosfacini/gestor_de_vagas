@@ -29,9 +29,9 @@
 
 }
 
-.btn-orange{
+.btn-roxo{
 
-    background-color: #ED8554;
+    background-color: #7D2948;
     color: white;
 }
 
@@ -60,6 +60,11 @@
 
 .arrow-right{
     float: right;
+    
+}
+
+.arrow-left{
+    float: left;
     
 }
 
